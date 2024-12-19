@@ -11,7 +11,7 @@ st.write("# :افزودن داده جدید")
 
 with st.form('myform'):
     col1, col2, col3, col4, col5 = st.columns(5)
-    
+
     with col1:
         i_oType = st.radio('ورودی / خروجی', options=['ورودی', 'خروجی'])
 
@@ -26,7 +26,7 @@ with st.form('myform'):
         Pric = st.number_input(label="قیمت هر واحد", placeholder='*', step=1)     
         
     with col5:
-        date = st.text_input(label="تاریخ", placeholder='*')
+        date = st.text_input(label="تاریخ", value=date(), placeholder=date())
     
     
 
@@ -35,6 +35,7 @@ if submit:
     result = input_i_o(input_list=input_list)
     if result == 502:
         st.write("کالایی که قصد حذف آن را داشتید در انبار موجود نبود و عملیات شما صورت نگرفت")
+    st.rerun()
     submit = None
     # send input list then clear submit
     
