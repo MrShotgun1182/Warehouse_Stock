@@ -289,6 +289,25 @@ class back_lend:
           
 class back_finance:
     __add_finance__ = "حساب جدیدی ثبت نشده"
+
+    def finance_DF(self):
+        Table_name = "Finance"
+        obj = SQL()
+        data = obj.get_table(Table_Name=Table_name)
+        DF_list = list()
+        for row in data:
+            DF_dic = {
+                "کد تراکنش": row[0],
+                "نوع تراکنش": "واریز" if row[1] == 0 else "برداشت",
+                "مبلغ": row[2],
+                "تاریخ": row[3],
+                "شرح تراکنش": row[4],
+                "توضیحات": row[5]
+            }
+            DF_list.append(DF_dic)
+        DF = pd.DataFrame(DF_list)
+        return DF
+    
     def input_finance(self, input_dic):
         if input_dic["price"] == 0:
             self.__add_finance__ = "مبلغ الزامی است"

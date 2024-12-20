@@ -68,11 +68,14 @@ def forms():
                     st.write(back.__add_finance__)
                     submit_form2 = None
 
-
+def finance_DF():
+    with st.expander("تراکنش های اخیر"):
+        st.dataframe(back.finance_DF(), use_container_width=True)
 
 def main():
     header()
     forms()
+    finance_DF()
 
 back = back_finance()
 main()
