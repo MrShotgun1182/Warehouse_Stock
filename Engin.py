@@ -309,11 +309,6 @@ class back_finance:
         return 200
 
 if __name__ == "__main__":
-    # back = back_lend()
-    # print(back.input_product(["خدافط", "داداش"]))
-    # print(back.input_lend(['علی','میخ',5,'1402','','']))
-    # print(type(values[0]))
-    # make_WS_DF()
-    # make_i_o_DF()
+    # test git
     pass
     
