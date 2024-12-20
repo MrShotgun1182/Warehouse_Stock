@@ -1,6 +1,6 @@
 import streamlit as st
 from Engin import back_lend as bl
-from Engin import make_dic, date
+from Engin import make_dic, dic_date
 
 def lend_DF():
     st.set_page_config(page_title="امانت")
@@ -27,7 +27,8 @@ def new_lend():
         column1, column2 = st.columns(2)
         
         with column1:
-            give_lend = st.text_input(label="تاریخ دریافت امانت", value=date(), placeholder=date())
+            date = dic_date()
+            give_lend = st.text_input(label="تاریخ دریافت امانت", value=date, placeholder=date)
             
         with column2:
             get_lend = st.text_input(label="تاریخ بازگشت امانت", placeholder="اختیاری")

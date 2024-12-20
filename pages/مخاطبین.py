@@ -21,12 +21,11 @@ def new_person():
             phon_number = st.number_input(label="شماره تلفن", placeholder="شماره تلفن", value=None, step=1)
             
         Information = st.text_input(label="اطلاعات", placeholder="اختیاری")
-        submit = st.form_submit_button("درج اطلاعات", use_container_width=True)
+        submit = st.form_submit_button("ثبت", use_container_width=True)
 
     if submit:
         input_list = [name_lastname, phon_number, Information]
         back.input_peron(input_list)
-        st.write(back.__add_person__)
         submit = None
 
 def update_person():
@@ -44,7 +43,7 @@ def update_person():
             phon_number = st.number_input(label="شماره تلفن", placeholder="شماره تلفن", value=None, step=1)
 
         Information = st.text_input(label="اطلاعات", placeholder="*")
-        submit = st.form_submit_button("درج اطلاعات", use_container_width=True)
+        submit = st.form_submit_button("ثبت", use_container_width=True)
 
     if submit:
         input_list = [personID, name_lastname, phon_number, Information]

@@ -2,7 +2,7 @@ from SQL_manage import SQL
 import pandas as pd
 import jdatetime
 
-def date():
+def dic_date():
     date = jdatetime.datetime.now()
     dic_date = f"""{date.year}/{date.month}/{date.day}"""
 
@@ -288,11 +288,28 @@ class back_lend:
         return DF
           
 class back_finance:
-    pass
+    __add_finance__ = "حساب جدیدی ثبت نشده"
+    def input_finance(self, input_dic):
+        if input_dic["price"] == 0:
+            self.__add_finance__ = "مبلغ الزامی است"
+            return 500
+        elif input_dic["date"] == "":
+            self.__add_finance__ = "تاریخ الزامی است"
+            return 500
+        elif input_dic["information"] == "":
+            self.__add_finance__ = "فیلد شرح الزامی است"
+            return 500
+        
+        if input_dic["description"] == "":
+            input_dic["description"] = None
+            
+        obj = SQL()
+        obj.add_finance(Type=input_dic["type"], Price=input_dic["price"], Date=input_dic["date"], Information=input_dic["information"], Description=input_dic["description"])
+        self.__add_finance__ = "داده جدید ثبت شد"
+        return 200
 
 if __name__ == "__main__":
     # back = back_lend()
-    print(date())
     # print(back.input_product(["خدافط", "داداش"]))
     # print(back.input_lend(['علی','میخ',5,'1402','','']))
     # print(type(values[0]))

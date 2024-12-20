@@ -1,5 +1,6 @@
 import pyodbc as odbc
 import pandas as pd
+
 class SQL:
     __connect__ = False
     SERVER_NAME = '.'
@@ -71,11 +72,22 @@ class SQL:
     def add_Warehouse_Stock(self, ProductID, WS_Inventory):
         query = F"""
             INSERT INTO Warehouse_Stock (ProductID, WS_Inventory)
-            VALUES ('{ProductID}', '{WS_Inventory}');
+            VALUES ({ProductID}, {WS_Inventory});
         """
         self.cursor.execute(query)
         self.conn.commit()
-     
+    
+    def add_finance(self, Type, Price, Date, Information, Description = None):
+        if Description:
+            query = F"""INSERT INTO Finance (Type, Price, Date, Information, Description)
+            VALUES ({Type}, {Price}, '{Date}', N'{Information}', N'{Description}');"""
+        else:
+            query = F"""INSERT INTO Finance (Type, Price, Date, Information)
+            VALUES ({Type}, {Price}, '{Date}', N'{Information}');"""
+        
+        self.cursor.execute(query)
+        self.conn.commit()
+        
     def update_Warehouse_Stock(self, WSID, WS_Inventory):
         query = f"""UPDATE Warehouse_Stock
                 SET WS_Inventory = {WS_Inventory}
@@ -153,18 +165,4 @@ class SQL:
         return result
     
 if __name__ == "__main__":
-    # try: 
     test = SQL()
-    # test.add_Product(ProductName="سلام")
-    # print(test.get_target_row_WS(ProductID=1003))
-    # test.add_i_o(i_oType=0, ProductID=1004, Price=21, Date=12334, Number=4)
-    # print(test.get_target_row_WS(ProductID=1003))
-    # print(test.gat_column_name("Warehouse_stock"))
-    # print(test.get_table("Warehouse_stock"))
-    # data=test.get_table("Warehouse_stock")
-    # print(pd.DataFrame.to_sql(data= data))
-    # test.add_Product(ProductName="s1", ProductType="1", Description="سلام داداش خوبی شما")
-    print("ok")
-    # except Exception as err:
-    #     print(err)
-    #     print("not ok")

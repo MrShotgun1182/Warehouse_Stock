@@ -26,7 +26,8 @@ with st.form('myform'):
         Pric = st.number_input(label="قیمت هر واحد", placeholder='*', step=1)     
         
     with col5:
-        date = st.text_input(label="تاریخ", value=date(), placeholder=date())
+        date = dic_date()
+        date = st.text_input(label="تاریخ", value=date, placeholder=date)
     
     
 
