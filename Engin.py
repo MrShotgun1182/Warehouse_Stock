@@ -327,6 +327,17 @@ class back_finance:
         self.__add_finance__ = "داده جدید ثبت شد"
         return 200
 
+    def sum_pike_deposit_month(self, month):
+        obj = SQL()
+        data = obj.finance_month(month=month)
+        pike, deposit = 0, 0
+        for row in data:
+            if row[1] == 1:
+                pike += row[2]
+            else:
+                deposit += row[2]
+        return deposit, pike
+
 if __name__ == "__main__":
     # test git
     pass

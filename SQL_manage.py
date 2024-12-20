@@ -164,5 +164,13 @@ class SQL:
         result = self.cursor.fetchall()
         return result
     
+    def finance_month(self, month):
+        query = F"""SELECT * FROM Finance WHERE Date LIKE '%/{month}/%'"""
+
+        self.cursor.execute(query)
+        result = self.cursor.fetchall()
+        return result
+    
 if __name__ == "__main__":
     test = SQL()
+    print(test.finance_month(9))

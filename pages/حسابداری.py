@@ -68,6 +68,27 @@ def forms():
                     st.write(back.__add_finance__)
                     submit_form2 = None
 
+def month_info():
+    date = dic_date().split('/')
+    date = date[1]
+    date = int(date)
+    with st.expander("نمودار ماهیانه"):
+        col1, col2, col3 = st.columns(3)
+        with col3:
+            with st.form("select_month", border=False):
+                month = st.number_input(label=":ماه مورد نظر را انتخاب کنید",min_value=0, max_value=12, step=1, value=date)
+                submit = st.form_submit_button('بررسی')
+        with col1:
+            if submit:
+                pass
+        with col2:
+            if submit:
+                deposit, pike = back.sum_pike_deposit_month(month=month)
+                st.write(F"""##### واریزی
+                         {deposit}""")
+                st.write(F"""##### برداشت
+                         {pike}""")
+
 def finance_DF():
     with st.expander("تراکنش های اخیر"):
         st.dataframe(back.finance_DF(), use_container_width=True)
@@ -76,6 +97,7 @@ def main():
     header()
     forms()
     finance_DF()
+    month_info()
 
 back = back_finance()
 main()
