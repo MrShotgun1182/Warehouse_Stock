@@ -1,5 +1,7 @@
 import streamlit as st
 from Engin import back_finance
+import matplotlib.pyplot as plt
+import numpy as np
 from Engin import dic_date
 
 def header():
@@ -78,16 +80,28 @@ def month_info():
             with st.form("select_month", border=False):
                 month = st.number_input(label=":ماه مورد نظر را انتخاب کنید",min_value=0, max_value=12, step=1, value=date)
                 submit = st.form_submit_button('بررسی')
-        with col1:
-            if submit:
-                pass
         with col2:
             if submit:
                 deposit, pike = back.sum_pike_deposit_month(month=month)
-                st.write(F"""##### واریزی
-                         {deposit}""")
-                st.write(F"""##### برداشت
-                         {pike}""")
+                st.write(F"""## مجموع تراکنش
+                         {deposit + pike}""")
+
+                col21, col22 = st.columns(2)
+                with col21:
+                    st.write(F"""##### واریزی
+                            {deposit}""")
+                with col22:
+                    st.write(F"""##### برداشت
+                            {pike}""")
+        with col1:
+            if submit:
+                value = [deposit, pike]
+                labels = ["deposit", "pike"]
+                color = ['#034efc', '#fc034e']
+                fig, ax = plt.subplots()
+                ax.pie(value, labels=labels, startangle=90, autopct='%1.1f%%', colors=color)
+                ax.axis("equal")
+                st.pyplot(fig)
 
 def finance_DF():
     with st.expander("تراکنش های اخیر"):
@@ -101,4 +115,3 @@ def main():
 
 back = back_finance()
 main()
-    
