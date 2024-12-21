@@ -1,13 +1,17 @@
 import streamlit as st
-from Engin import make_WS_DF
+from Engin import back_WS
 
-st.set_page_config(page_title="WS")
-
-st.write("# :موجودی انبار به شرح زیر میباشد ")
-
-st.dataframe(make_WS_DF(), use_container_width=True, selection_mode="multi-row")
-
-@st.dialog("Sign up")
-def email_form():
-    name = st.text_input("Name")
-    email = st.text_input("Email")
+def header():
+    st.set_page_config(page_title="WS")
+    st.write("<div style='text-align: center'> <h1>موجودی انبار<h1> </div>", unsafe_allow_html=True)
+    
+def WS_DF():
+    st.write("<div style='text-align: center'> <h4>:موجودی انبار به شرح زیر میباشد <h4> </div>", unsafe_allow_html=True)
+    st.dataframe(back.make_WS_DF(), use_container_width=True, selection_mode="multi-row")
+    
+def main():
+    header()
+    WS_DF()
+    
+back = back_WS()
+main()

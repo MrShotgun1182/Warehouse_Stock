@@ -1,7 +1,6 @@
 import streamlit as st
 from Engin import back_finance
 import matplotlib.pyplot as plt
-import numpy as np
 from Engin import dic_date
 
 def header():
@@ -9,8 +8,7 @@ def header():
     _, col2, _ = st.columns(3)
     with col2:
         st.write("# :حسابداری")
-        
-    
+            
 def forms():
     date = dic_date()
     col_form1, col_form2 = st.columns(2)
