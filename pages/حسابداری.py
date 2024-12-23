@@ -1,7 +1,7 @@
 import streamlit as st
-from Engin import back_finance
+from Engine import back_finance
 import matplotlib.pyplot as plt
-from Engin import dic_date
+from Engine import dic_date
 
 def header():
     st.set_page_config(page_title="Information")

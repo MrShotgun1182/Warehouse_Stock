@@ -1,5 +1,5 @@
 import streamlit as st
-from Engin import back_i_o, dic_date, make_dic
+from Engine import back_i_o, dic_date, make_dic
 
 def header():
     st.set_page_config(page_title="i_o")
@@ -33,8 +33,7 @@ def add_i_o():
             date = dic_date()
             date = st.text_input(label="تاریخ", value=date, placeholder=date)
         
-        
-        
+
     if submit:
         input_list = [i_oType, ProductName, Pric, Number, date]
         result = back.input_i_o(input_list=input_list)
@@ -50,4 +49,3 @@ def main():
     
 back = back_i_o()
 main()
-    
