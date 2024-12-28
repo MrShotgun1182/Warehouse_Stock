@@ -269,7 +269,7 @@ class back_lend:
         self.__add_lend__ = "داده جدید ثبت شد"
         return 200
         
-    def Current_loan_DF(self):
+    def Current_lend_DF(self):
         obj = SQL()
         data = obj.Current_loan_data()
         DF_list = list()

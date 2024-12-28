@@ -23,11 +23,11 @@ def add_i_o():
             ProductName = st.selectbox("نام کالا", list(make_dic("Products").values()), placeholder='*')
             
         with col3:
-            Number = st.number_input(label="تعداد", placeholder='*', step=1)
+            Number = st.number_input(label="تعداد", placeholder='*', step=1, min_value=1, value=1)
             submit = st.form_submit_button("درج کردن")
             
         with col4: 
-            Pric = st.number_input(label="قیمت هر واحد", placeholder='*', step=1)     
+            Pric = st.number_input(label="(تومان)قیمت هر واحد", placeholder='*', step=1, min_value=1)     
             
         with col5:
             date = dic_date()

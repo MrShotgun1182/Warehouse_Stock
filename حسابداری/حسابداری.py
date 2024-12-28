@@ -17,7 +17,7 @@ def forms():
             with st.form("accont_picke", border=False):
                 form1_col1, form1_col2 = st.columns(2)
                 with form1_col1:
-                    price = st.number_input(label=":مبلغ برداشت", step=1)
+                    price = st.number_input(label=":مبلغ برداشت", step=1, min_value=1)
                 with form1_col2:
                     date = st.text_input(label=":تاریخ برداشت", placeholder=date, value=date)
                 information = st.text_input(label=":شرح برداشت", placeholder="اجباری")
@@ -46,7 +46,7 @@ def forms():
             with st.form("accont_deposit", border=False):
                 form1_col1, form1_col2 = st.columns(2)
                 with form1_col1:
-                    price = st.number_input(label=":مبلغ واریز", step=1)
+                    price = st.number_input(label=":مبلغ واریز", step=1, min_value=1)
                 with form1_col2:
                     date = st.text_input(label=":تاریخ واریز", placeholder=date, value=date)
                 information = st.text_input(label=":شرح واریز", placeholder="اجباری")
@@ -76,7 +76,7 @@ def month_info():
         col1, col2, col3 = st.columns(3)
         with col3:
             with st.form("select_month", border=False):
-                month = st.number_input(label=":ماه مورد نظر را انتخاب کنید",min_value=0, max_value=12, step=1, value=date)
+                month = st.number_input(label=":ماه مورد نظر را انتخاب کنید",min_value=1, max_value=12, step=1, value=date)
                 submit = st.form_submit_button('بررسی')
         with col2:
             if submit:

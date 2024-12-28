@@ -22,7 +22,7 @@ def new_lend():
             product_name = st.selectbox(label="نام کالا", options=list(make_dic("Products").values()), placeholder="اجباری")
         
         with col3:
-            numbers = st.number_input(label="تعدادامانت", step=1, placeholder="اجباری")
+            numbers = st.number_input(label="تعدادامانت", step=1, min_value=1, value=1, placeholder="اجباری")
     
         column1, column2 = st.columns(2)
         
@@ -43,16 +43,16 @@ def new_lend():
         st.write(back.__add_lend__)
         submit = None
         
-def current_loan():
+def current_lend():
     st.write("# :امانت های جاری")
     
-    st.dataframe(back.Current_loan_DF(), use_container_width=True)
+    st.dataframe(back.Current_lend_DF(), use_container_width=True)
 
 
 def main():
     lend_DF()
     new_lend()
-    current_loan()
+    current_lend()
     
 back = bl()
 main()
