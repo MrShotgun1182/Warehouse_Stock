@@ -3,6 +3,8 @@ import streamlit as st
 def bar():
     if "logged_in" not in st.session_state:
         st.session_state.logged_in = False
+    if "level_account" not in st.session_state:
+        st.session_state.level_account = None
     
     login_page = st.Page("accont\login_page.py", title="Log in", icon=":material/login:")
     logout_page = st.Page("accont\logout_page.py", title="Log out", icon=":material/logout:")
