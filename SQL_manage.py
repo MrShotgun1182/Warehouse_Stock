@@ -4,9 +4,9 @@ import pandas as pd
 class SQL:
     __connect__ = False
     SERVER_NAME = '.'
-    DATABASE_NAME = "barbita"
-    USERNAME = 'sa' 
-    PASSWORD = 'admin@2024'
+    DATABASE_NAME = "Barbita"
+    USERNAME = None 
+    PASSWORD = None
     def __init__(self):
         connectionString = f'DRIVER={{SQL SERVER}};SERVER={self.SERVER_NAME};DATABASE={self.DATABASE_NAME}'
         if self.USERNAME and self.PASSWORD:
@@ -171,6 +171,15 @@ class SQL:
         result = self.cursor.fetchall()
         return result
     
+    def find_account(self, user_name, password):
+        query = F"""SELECT Level FROM Users WHERE User_name = '{user_name}' and password = '{password}'"""
+        self.cursor.execute(query)
+        result = self.cursor.fetchall()
+        if result:
+            return result
+        else:
+            return 
+
 if __name__ == "__main__":
     test = SQL()
     print(test.finance_month(9))
