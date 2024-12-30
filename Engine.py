@@ -1,6 +1,7 @@
 from SQL_manage import SQL
 import pandas as pd
 import jdatetime
+import hashlib
 
 def dic_date():
     date = jdatetime.datetime.now()
@@ -340,7 +341,38 @@ class back_finance:
                 deposit += row[2]
         return deposit, pike
 
+class back_login_page:
+    __account_status__ = "خارج از حساب کاربری"
+    __level_account__ = "no level"
+    def test_account(self, input_dic):
+        if input_dic["user_name"] == None:
+            self.__account_status__ = "نام کاربری را وارد کنید"
+            return 500
+        if input_dic["password"] == None:
+            self.__account_status__ = "رمز عبور را وارد کنید"
+            return 500
+        
+        bytes_password = bytes(input_dic["password"], "utf-8")
+        Hash_password = hashlib.sha256(bytes_password).hexdigest()
+
+        obj = SQL()
+        level_account = obj.find_account(user_name=input_dic["user_name"], password=Hash_password)
+
+        if not level_account:
+            self.__account_status__ = "نام کاربری یا رمز عبور اشتباه است"
+            return 500
+
+        self.__level_account__ = level_account[0][0]
+        return 200
+
+
 
 if __name__ == "__main__":
-    pass
+    test = back_login_page()
+    print(test.test_account(
+        {
+            "user_name": "morteza",
+            "password": "Hello word"
+        }
+    ))
     
