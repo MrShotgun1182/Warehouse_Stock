@@ -10,9 +10,11 @@ def i_o_DF():
     
     st.dataframe(back.make_i_o_DF(), use_container_width=True, selection_mode="multi-row")
 
+    st.divider()
+
 def add_i_o():
-    st.write("# :افزودن داده جدید")
     
+    st.write("<div style='text-align: center'> <h4>افزودن داده جدید<h4> </div>", unsafe_allow_html=True)
     with st.form('myform'):
         col1, col2, col3, col4, col5 = st.columns(5)
         

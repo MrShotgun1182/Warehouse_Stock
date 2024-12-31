@@ -6,8 +6,9 @@ def bar():
     if "level_account" not in st.session_state:
         st.session_state.level_account = None
     
-    login_page = st.Page("accont\login_page.py", title="Log in", icon=":material/login:")
-    logout_page = st.Page("accont\logout_page.py", title="Log out", icon=":material/logout:")
+    login_page = st.Page("account\login_page.py", title="Log in", icon=":material/login:")
+    logout_page = st.Page("account\logout_page.py", title="Log out", icon=":material/logout:")
+    Person_page = st.Page("account/Person_account.py", title="حساب کاربری")
 
     warehouse = st.Page("انبار\موجودی انبار.py", title="موجودی انبار", default=True)
     i_o = st.Page("انبار\ورودی و خروجی.py", title="ورودی و خروجی")
@@ -21,10 +22,10 @@ def bar():
     if st.session_state.logged_in:
         page = st.navigation(
                 {
-                    "حساب کاربری": [logout_page],
                     "انبار": [warehouse, i_o, products],
                     "امانات": [lend, persons],
-                    "حسابداری": [finance]
+                    "حسابداری": [finance],
+                    "حساب کاربری": [Person_page, logout_page]
                 },
                 position="sidebar"
             )
