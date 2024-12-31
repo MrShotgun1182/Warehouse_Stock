@@ -365,6 +365,42 @@ class back_login_page:
         self.__level_account__ = level_account[0][0]
         return 200
 
+class back_Person_account:
+    __add_user__ = "اکانت جدیدی ثبت نشده است"
+    def input_User(self, input_dic):
+        if input_dic["user_name"] == None:
+            self.__add_user__ = "نام کاربری اجباری است"
+            return 500
+        if input_dic["password"] == None:
+            self.__add_user__ = "رمز عبور اجباری است"
+            return 500
+        if input_dic["level"] == None:
+            self.__add_user__ = "سطح دسترسی را انتخاب کنید"
+            return 500
+
+        bytes_password = bytes(input_dic["password"], "utf-8")
+        Hash_password = hashlib.sha256(bytes_password).hexdigest()
+
+        if input_dic["level"] == "ادمین":
+            level = "admin"
+        elif input_dic["level"] == "کاربر":
+            level = "operator"
+        else:
+            input_dic["level"] == "بازدید کننده"
+            level = "spectator"
+
+        date = dic_date()
+
+        obj = SQL()
+        obj.add_user(user_name=input_dic["user_name"], password=Hash_password, level=level, creat_account=date)
+        self.__add_user__ = "حساب جدید ایجاد شد"
+        return 200
+
+    def test_password(self, password, true_password):
+        if password == true_password:
+            return True
+        else:
+            return False
 
 
 if __name__ == "__main__":

@@ -87,7 +87,14 @@ class SQL:
         
         self.cursor.execute(query)
         self.conn.commit()
+    
+    def add_user(self, user_name, password, level, creat_account):
+        query = F"""INSERT INTO Users (User_name, Password, Level, Creat_account)
+            VALUES ('{user_name}', '{password}', '{level}', '{creat_account}');"""
         
+        self.cursor.execute(query)
+        self.conn.commit()
+
     def update_Warehouse_Stock(self, WSID, WS_Inventory):
         query = f"""UPDATE Warehouse_Stock
                 SET WS_Inventory = {WS_Inventory}
