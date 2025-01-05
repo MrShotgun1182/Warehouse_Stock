@@ -106,10 +106,11 @@ def finance_DF():
         st.dataframe(back.finance_DF(), use_container_width=True)
 
 def main():
-    header()
-    forms()
-    finance_DF()
-    month_info()
+    if st.session_state.level_account in ["admin", "operator"]:
+        finance_DF()
+        header()
+        forms()
+        month_info()
 
 back = back_finance()
 main()

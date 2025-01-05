@@ -51,9 +51,12 @@ def update_person():
         submit = None
 
 def main():
-    person_DF()
-    new_person()
-    update_person()
+    if st.session_state.level_account in ["admin", "operator", "spectator"]:
+        person_DF()
+        if st.session_state.level_account in ["admin", "operator"]:
+            new_person()
+        if st.session_state.level_account == "admin":
+            update_person()
     
 back = bp()    
 main()

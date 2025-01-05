@@ -55,9 +55,12 @@ def update_product():
         
     
 def main():
-    product_DF()    
-    new_product()
-    update_product()
+    if st.session_state.level_account in ["admin", "operator", "spectator"]:
+        product_DF()    
+        if st.session_state.level_account in ["admin", "operator"]:
+            new_product()
+        if st.session_state.level_account == "admin":
+            update_product()
     
 back = bp()
 main()

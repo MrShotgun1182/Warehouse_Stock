@@ -50,9 +50,11 @@ def current_lend():
 
 
 def main():
-    lend_DF()
-    new_lend()
-    current_lend()
+    if st.session_state.level_account in ["admin", "operator", "spectator"]:
+        lend_DF()
+        current_lend()
+        if st.session_state.level_account in ["admin", "operator"]:
+            new_lend()
     
 back = bl()
 main()

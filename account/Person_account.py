@@ -48,10 +48,11 @@ def new_account():
 
 
 def main():
-    header()
-    account_bio()
-    if st.session_state.level_account == "admin":
-        new_account()
+    if st.session_state.level_account in ["admin", "operator", "spectator"]:
+        header()
+        account_bio()
+        if st.session_state.level_account == "admin":
+            new_account()
 
 back = back_Person_account()
 main()

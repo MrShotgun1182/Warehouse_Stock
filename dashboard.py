@@ -32,7 +32,7 @@ def bar():
     else:
         page = st.navigation(
                 {
-                    "حسباکاربری": [login_page]
+                    "حساب کاربری": [login_page]
                 }
             )
 

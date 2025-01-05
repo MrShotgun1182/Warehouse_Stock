@@ -45,9 +45,11 @@ def add_i_o():
         submit = None
     
 def main():
-    header()
-    i_o_DF()
-    add_i_o()
+    if st.session_state.level_account in ["admin", "operator", "spectator"]:
+        header()
+        i_o_DF()
+        if st.session_state.level_account in ["admin", "operator"]:
+            add_i_o()
     
 back = back_i_o()
 main()

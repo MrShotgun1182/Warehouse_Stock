@@ -10,8 +10,9 @@ def WS_DF():
     st.dataframe(back.make_WS_DF(), use_container_width=True, selection_mode="multi-row")
     
 def main():
-    header()
-    WS_DF()
+    if st.session_state.level_account in ["admin", "operator", "spectator"]:
+        header()
+        WS_DF()
     
 back = back_WS()
 main()
