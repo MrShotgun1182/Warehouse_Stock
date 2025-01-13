@@ -48,7 +48,6 @@ def current_lend():
     
     st.dataframe(back.Current_lend_DF(), use_container_width=True)
 
-
 def main():
     if st.session_state.level_account in ["admin", "operator", "spectator"]:
         lend_DF()

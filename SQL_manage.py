@@ -186,6 +186,12 @@ class SQL:
             return result
         else:
             return 
+        
+    def search_person(self, name):
+        query = F"""SELECT * FROM Persons WHERE Name_Lastname LIKE N'%{name}%' """
+        self.cursor.execute(query)
+        result = self.cursor.fetchall()
+        return result
 
 if __name__ == "__main__":
     test = SQL()

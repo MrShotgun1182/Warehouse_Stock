@@ -138,6 +138,7 @@ class back_products:
 class back_person:
     __add_person__ = "فرد جدیدی ثبت نشده"
     __update_person__ = "بروزرسانی نداشته اید"
+    __search_person__ = "جست و جویی وارد نشده"
     
     def make_person_DF(self):
         Table_name = "Persons"
@@ -189,6 +190,26 @@ class back_person:
         self.__update_person__ = "اطلاعات فرد بروزرسانی شد"
         return 200
             
+    def search_by_name(self, input_dic):
+        if input_dic["name"] == "":
+            self.__search_person__ = "نام فرد الزامی است"
+            return 500
+
+        obj = SQL()
+        data = obj.search_person(input_dic["name"])
+        DF_list = list()
+        for row in data:
+            DF_dic = {
+                "کد فرد": row[0],
+                "نام و نام خانوادگی": row[1],
+                "شماره تلفن": row[2],
+                "اطلاعات": row[3]
+            }
+            DF_list.append(DF_dic)
+        DF = pd.DataFrame(DF_list)
+        return DF
+            
+    
 class back_lend:
     __add_lend__ = "مورد جدیدی ثبت نشده"
     def make_lend_DF(self):
@@ -289,7 +310,7 @@ class back_lend:
             DF_list.append(DF_dic)
         DF = pd.DataFrame(DF_list)
         return DF
-          
+                 
 class back_finance:
     __add_finance__ = "حساب جدیدی ثبت نشده"
 

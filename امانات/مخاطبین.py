@@ -50,9 +50,21 @@ def update_person():
         back.update_person(input_list)
         submit = None
 
+def search():
+    with st.form("search by name"):
+        name = st.text_input("جست و جو", placeholder="نام فرد را وارد کنید")
+        submit = st.form_submit_button("جست و جو")
+        if submit:
+            input_dic = {
+                "name": name
+            }
+            search_DF = back.search_by_name(input_dic)
+            st.dataframe(search_DF, use_container_width=True)
+
 def main():
     if st.session_state.level_account in ["admin", "operator", "spectator"]:
         person_DF()
+        search()
         if st.session_state.level_account in ["admin", "operator"]:
             new_person()
         if st.session_state.level_account == "admin":
