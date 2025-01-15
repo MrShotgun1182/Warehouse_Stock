@@ -5,6 +5,8 @@ def header():
     st.set_page_config(page_title="login page")
 
 def login_form():
+    if "level_account" not in st.session_state:
+        st.session_state.level_account = None
     with st.form("login_form"):
         user_name = st.text_input(label="نام کاربری خود را وارد کنید")
         password = st.text_input(label="رمز عبور خود را وارد کنید", type="password")

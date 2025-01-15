@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 from Engine import dic_date
 
 def header():
-    st.set_page_config(page_title="Information")
+    # st.set_page_config(page_title="Information")
     _, col2, _ = st.columns(3)
     with col2:
         st.write("# :حسابداری")
@@ -82,7 +82,7 @@ def month_info():
             if submit:
                 deposit, pike = back.sum_pike_deposit_month(month=month)
                 st.write(F"""## مجموع تراکنش
-                         {deposit + pike}""")
+                        {deposit + pike}""")
 
                 col21, col22 = st.columns(2)
                 with col21:
@@ -107,8 +107,8 @@ def finance_DF():
 
 def main():
     if st.session_state.level_account in ["admin", "operator"]:
-        finance_DF()
         header()
+        finance_DF()
         forms()
         month_info()
 

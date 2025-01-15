@@ -209,7 +209,6 @@ class back_person:
         DF = pd.DataFrame(DF_list)
         return DF
             
-    
 class back_lend:
     __add_lend__ = "مورد جدیدی ثبت نشده"
     def make_lend_DF(self):
