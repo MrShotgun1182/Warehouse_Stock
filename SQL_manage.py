@@ -1,5 +1,4 @@
 import pyodbc as odbc
-import pandas as pd
 
 class SQL:
     __connect__ = False

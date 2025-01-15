@@ -49,12 +49,8 @@ def current_lend():
     st.dataframe(back.Current_lend_DF(), use_container_width=True)
 
 def main():
-    if st.session_state.level_account == 'admin':
-        print("ok")
-    else:
-        print("not ok")
-        print(st.session_state.level_account, "not = admin")
-    if st.session_state.level_account == "admin":
+
+    if st.session_state.level_account in ["admin", "operator", "spectator"]:
         lend_DF()
         current_lend()
     if st.session_state.level_account in ["admin", "operator"]:
