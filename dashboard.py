@@ -20,7 +20,6 @@ def bar():
     finance = st.Page("حسابداری\حسابداری.py", title="حسابداری")
     
     if st.session_state.logged_in:
-        print(st.session_state.level_account)
         page = st.navigation(
                 {
                     "انبار": [warehouse, i_o, products],
