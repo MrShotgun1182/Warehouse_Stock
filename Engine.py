@@ -93,6 +93,7 @@ class back_i_o:
 class back_products:
     __add_product__ = 'کالا جدیدی ثبت نشده است'
     __update_product__ = ""
+    __delete_status__ = ""
     
     def make_products_DF(self):
         Table_name = "Products"
@@ -134,6 +135,15 @@ class back_products:
         obj = SQL()
         obj.update_Product(Product_ID=input_lsit[0], Product_name=input_lsit[1], Description=input_lsit[2])
         self.__update_product__ = F"کالا با شماره{input_lsit[0]}بروزرسانی شد"
+
+    def delete_prooduct(self, input_dic):
+        if input_dic["productID"] == "":
+            self.__delete_status__ = "کد کالا الزامی است"
+            return 500
+
+        obj = SQL()
+        obj.delete_row_by_ID(Table_Name="Products", ID_column_name="ProductID", value=input_dic["productID"])
+        return 200
 
 class back_person:
     __add_person__ = "فرد جدیدی ثبت نشده"

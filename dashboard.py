@@ -8,7 +8,7 @@ def bar():
     
     login_page = st.Page("account\login_page.py", title="Log in", icon=":material/login:")
     logout_page = st.Page("account\logout_page.py", title="Log out", icon=":material/logout:")
-    Person_page = st.Page("account/Person_account.py", title="حساب کاربری")
+    Person_page = st.Page("account\Person_account.py", title="حساب کاربری")
 
     warehouse = st.Page("انبار\موجودی انبار.py", title="موجودی انبار", default=True)
     i_o = st.Page("انبار\ورودی و خروجی.py", title="ورودی و خروجی")

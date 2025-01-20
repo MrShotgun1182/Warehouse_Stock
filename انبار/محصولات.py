@@ -51,7 +51,19 @@ def update_product():
         result = back.update_product(input_list)
         st.rerun()
         submit = None
-        
+
+def delete_product():
+    st.write("# :حذف کالا")
+    with st.form("delet product"):
+        productID = st.text_input("کد کالای مورد نظر را وارد کنید", placeholder="اجباری")
+        submit = st.form_submit_button("حذف کالا", use_container_width=True)
+
+        if submit:
+            input_dic = {
+                "productID": productID
+            }
+            back.delete_prooduct(input_dic)
+            st.rerun()
         
     
 def main():
@@ -61,6 +73,7 @@ def main():
             new_product()
         if st.session_state.level_account == "admin":
             update_product()
+            delete_product()
     
 back = bp()
 main()
