@@ -7,6 +7,7 @@ def person_DF():
     st.write("# :لیست افراد")
 
     st.dataframe(back.make_person_DF(), use_container_width=True, selection_mode="multi-row")
+    st.divider()
 
 def new_person():
     st.write("# :افزودن فرد جدید")
@@ -27,6 +28,7 @@ def new_person():
         input_list = [name_lastname, phon_number, Information]
         back.input_peron(input_list)
         submit = None
+    st.divider()
 
 def update_person():
     st.write("# :تغییر اطلاعات فرد")
@@ -60,6 +62,7 @@ def search():
             }
             search_DF = back.search_by_name(input_dic)
             st.dataframe(search_DF, use_container_width=True)
+    st.divider()
 
 def main():
     if st.session_state.level_account in ["admin", "operator", "spectator"]:

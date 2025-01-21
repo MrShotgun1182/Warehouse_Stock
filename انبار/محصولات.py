@@ -7,6 +7,7 @@ def product_DF():
     st.write("# :لیست کالاهای")
 
     st.dataframe(back.make_products_DF(), use_container_width=True, selection_mode="multi-row")
+    st.divider()
 
 def new_product():
     st.write("# :افزودن کالا جدید")
@@ -29,6 +30,7 @@ def new_product():
         result = back.input_product(input_list)
         st.rerun()
         submit = None
+    st.divider()
     
 def update_product():
     st.write("# :بروزرسانی")
@@ -51,6 +53,8 @@ def update_product():
         result = back.update_product(input_list)
         st.rerun()
         submit = None
+    
+    st.divider()
 
 def delete_product():
     st.write("# :حذف کالا")

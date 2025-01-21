@@ -8,6 +8,7 @@ def lend_DF():
     st.write("# :لیست امانت")
 
     st.dataframe(back.make_lend_DF(), use_container_width=True)
+    st.divider()
     
 def new_lend():
     st.write("#  اضافه کردن امانت")
@@ -42,11 +43,12 @@ def new_lend():
         st.write(input_list)
         st.write(back.__add_lend__)
         submit = None
-        
+
 def current_lend():
     st.write("# :امانت های جاری")
     
     st.dataframe(back.Current_lend_DF(), use_container_width=True)
+    st.divider()
 
 def main():
 

@@ -4,6 +4,7 @@ from Engine import back_i_o, dic_date, make_dic
 def header():
     st.set_page_config(page_title="i_o")
     st.write("<div style='text-align: center'> <h1> ورودی و خروجی انبار <h1> </div>", unsafe_allow_html=True)
+    st.divider()
     
 def i_o_DF():
     st.write("<div style='text-align: center'> <h4> :جدول ورودی و خروجی انبار<h4> </div>", unsafe_allow_html=True)
