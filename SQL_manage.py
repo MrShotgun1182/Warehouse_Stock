@@ -4,7 +4,7 @@ class SQL:
     __connect__ = False
     SERVER_NAME = '.'
     DATABASE_NAME = "Barbita"
-    USERNAME = None 
+    USERNAME = None
     PASSWORD = None
     def __init__(self):
         connectionString = f'DRIVER={{SQL SERVER}};SERVER={self.SERVER_NAME};DATABASE={self.DATABASE_NAME}'
@@ -109,7 +109,7 @@ class SQL:
                 
         self.cursor.execute(query)
         self.conn.commit()
-        
+          
     def update_Product(self, Product_ID , Product_name, Description):
         query = f"""UPDATE Products
                 SET ProductName = N'{Product_name}', Description = N'{Description}'
