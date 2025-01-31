@@ -4,7 +4,7 @@ from Engine import back_products as bp
 def product_DF():
     st.set_page_config(page_title="محصولات")
 
-    st.write("# :لیست کالاهای")
+    st.write("# :لیست کالاها")
 
     st.dataframe(back.make_products_DF(), use_container_width=True, selection_mode="multi-row")
     st.divider()
@@ -59,7 +59,7 @@ def update_product():
 def delete_product():
     st.write("# :حذف کالا")
     with st.form("delet product"):
-        productID = st.text_input("کد کالای مورد نظر را وارد کنید", placeholder="اجباری")
+        productID = st.number_input("کد کالای مورد نظر را وارد کنید", placeholder="اجباری", min_value=1, step=1)
         submit = st.form_submit_button("حذف کالا", use_container_width=True)
 
         if submit:
