@@ -4,9 +4,10 @@ from Engine import back_products as bp
 def product_DF():
     st.set_page_config(page_title="محصولات")
 
-    st.write("# :لیست کالاهای")
+    st.write("# :لیست کالاها")
 
     st.dataframe(back.make_products_DF(), use_container_width=True, selection_mode="multi-row")
+    st.divider()
 
 def new_product():
     st.write("# :افزودن کالا جدید")
@@ -29,6 +30,7 @@ def new_product():
         result = back.input_product(input_list)
         st.rerun()
         submit = None
+    st.divider()
     
 def update_product():
     st.write("# :بروزرسانی")
@@ -51,7 +53,21 @@ def update_product():
         result = back.update_product(input_list)
         st.rerun()
         submit = None
-        
+    
+    st.divider()
+
+def delete_product():
+    st.write("# :حذف کالا")
+    with st.form("delet product"):
+        productID = st.number_input("کد کالای مورد نظر را وارد کنید", placeholder="اجباری", min_value=1, step=1)
+        submit = st.form_submit_button("حذف کالا", use_container_width=True)
+
+        if submit:
+            input_dic = {
+                "productID": productID
+            }
+            back.delete_prooduct(input_dic)
+            st.rerun()
         
     
 def main():
@@ -61,6 +77,7 @@ def main():
             new_product()
         if st.session_state.level_account == "admin":
             update_product()
+            delete_product()
     
 back = bp()
 main()

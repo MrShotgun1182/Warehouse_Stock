@@ -131,6 +131,12 @@ class SQL:
         self.cursor.execute(query)
         self.conn.commit()
         
+    def delete_row_by_ID(self, Table_Name,ID_column_name, value):
+        query = F"""DELETE FROM {Table_Name} WHERE {ID_column_name} = {value};"""
+
+        self.cursor.execute(query)
+        self.conn.commit()
+    
     def get_table(self, Table_Name):
         query = f"""SELECT * FROM dbo.{Table_Name}"""
 
