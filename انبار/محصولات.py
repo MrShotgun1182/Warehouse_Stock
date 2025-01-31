@@ -66,8 +66,11 @@ def delete_product():
             input_dic = {
                 "productID": productID
             }
-            back.delete_prooduct(input_dic)
-            st.rerun()
+            status = back.delete_prooduct(input_dic)
+            if status == 200:
+                st.rerun()
+            else:
+                st.write(back.__delete_status__)
         
     
 def main():

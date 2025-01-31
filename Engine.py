@@ -28,6 +28,7 @@ class back_WS():
             # print(row)
             DF_dic = {
                 "کد موجود در انبار": row[0],
+                "کد کالا": str(row[1]),
                 "نام کالا": dic[row[1]],
                 "موجودی در انبار": row[2]
             }
@@ -134,7 +135,7 @@ class back_products:
 
         obj = SQL()
         obj.update_Product(Product_ID=input_lsit[0], Product_name=input_lsit[1], Description=input_lsit[2])
-        self.__update_product__ = F"کالا با شماره{input_lsit[0]}بروزرسانی شد"
+        self.__update_product__ = F"کالا با شماره{input_lsit[0]}بروزرسانی شد"        
 
     def delete_prooduct(self, input_dic):
         if input_dic["productID"] == "":
@@ -142,6 +143,23 @@ class back_products:
             return 500
 
         obj = SQL()
+        
+        data_in_stack = obj.get_one_column(Table_name="Warehouse_stock", Column_name="ProductID")
+        in_stack = list()
+        for row in data_in_stack:
+            in_stack.append(row[0])
+        if input_dic["productID"] in in_stack:
+            self.__delete_status__ = "این کالا در انبار موجود است"
+            return 500
+        
+        data_in_i_o = obj.get_one_column(Table_name="i_o", Column_name="ProductID")
+        in_i_o = list()
+        for row in data_in_i_o:
+            in_i_o.append(row[0])
+        if input_dic["productID"] in in_i_o:
+            self.__delete_status__ = "کالا در لیست ورودی و خروجی ثبت شده است"
+            return 500
+        
         obj.delete_row_by_ID(Table_Name="Products", ID_column_name="ProductID", value=input_dic["productID"])
         return 200
 
@@ -277,15 +295,10 @@ class back_lend:
         
         #update WS
         row = obj.get_target_row_WS(ProductID=input_list[1])
-        print(row, input_list[1])
-        print(type(row))
         if row != None:
             new_WS_Inventory = row[2] - input_list[2]
-            print("ta inja omad")
             if new_WS_Inventory > 0:
-                print("inja")
                 obj.update_Warehouse_Stock(WSID=row[0], WS_Inventory=new_WS_Inventory)
-                print("rad shod")
                 
             elif new_WS_Inventory == 0:
                 obj.delet_row(Table_name="Warehouse_Stock", Column_name="WSID", ID=row[0])
@@ -434,11 +447,9 @@ class back_Person_account:
 
 
 if __name__ == "__main__":
-    test = back_login_page()
-    print(test.test_account(
-        {
-            "user_name": "morteza",
-            "password": "Hello word"
-        }
-    ))
-    
+    test = back_products()
+    print(test.delete_prooduct({"productID": 1026}))
+    print(test.__delete_status__)
+    # for row in make_dic("Warehouse_stock"):
+    #     print(row)
+    # print(make_dic("Warehouse_stock"))

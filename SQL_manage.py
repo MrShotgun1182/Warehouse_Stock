@@ -198,6 +198,12 @@ class SQL:
         result = self.cursor.fetchall()
         return result
 
+    def get_one_column(self, Table_name, Column_name):
+        query = F"""SELECT {Column_name} FROM {Table_name}"""
+        self.cursor.execute(query)
+        result = self.cursor.fetchall()
+        return result
+
 if __name__ == "__main__":
     test = SQL()
     print(test.finance_month(9))
