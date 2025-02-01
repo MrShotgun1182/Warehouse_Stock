@@ -37,12 +37,14 @@ def new_lend():
         description = st.text_input(label="توضیحات", placeholder="اختیاری")
         submit = st.form_submit_button("درج کردن")
         
-    if submit:
-        input_list = [person_name, product_name, numbers, give_lend, get_lend, description]
-        back.input_lend(input_list)
-        st.write(input_list)
-        st.write(back.__add_lend__)
-        submit = None
+        if submit:
+            input_list = [person_name, product_name, numbers, give_lend, get_lend, description]
+            status = back.input_lend(input_list)
+            if status == 500:
+                st.error(back.__add_lend__)
+            else:
+                st.rerun()
+            submit = None
 
 def current_lend():
     st.write("# :امانت های جاری")

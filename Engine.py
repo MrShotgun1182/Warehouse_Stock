@@ -37,7 +37,8 @@ class back_WS():
         DF = pd.DataFrame(DF_list)
         return DF
 
-class back_i_o:    
+class back_i_o:
+    __add_i_o__ = ""
     def make_i_o_DF(self):
         Table_name = "i_o"
         obj = SQL()
@@ -87,7 +88,8 @@ class back_i_o:
                 else:
                     obj.update_Warehouse_Stock(WSID=row[0], WS_Inventory=new_WS_Inventory)
             else:
-                return 502
+                self.__add_i_o__ = "کالایی که قصد حذف آن را داشتید در انبار موجود نبود و عملیات شما صورت نگرفت"
+                return 500
         obj.add_i_o(i_oType=input_list[0], ProductID=input_list[1], Price=int(input_list[2]), Date=str(input_list[4]), Number=int(input_list[3]))
         return 200
 
@@ -117,10 +119,10 @@ class back_products:
         dic = make_dic("Products")
         if input_list[0] == "":
             self.__add_product__ = "نام کالا را وارد کنید"
-            return 501
+            return 500
         if input_list[0] in dic.values():
             self.__add_product__ = "این کالا قبلا ثبت شده است"
-            return 501
+            return 500
         
         obj = SQL()
         obj.add_Product(ProductName=input_list[0], Description=input_list[1])
@@ -132,6 +134,7 @@ class back_products:
 
         if not input_lsit[0] in dic.keys():
             self.__update_product__ = "کد کالا یافت نشد"
+            return 500
 
         obj = SQL()
         obj.update_Product(Product_ID=input_lsit[0], Product_name=input_lsit[1], Description=input_lsit[2])
@@ -188,10 +191,10 @@ class back_person:
     def input_peron(self, input_list):
         if input_list[0] == "":
             self.__add_person__ = "نام فرد وارد نشده"
-            return 501
+            return 500
         if input_list[1] == None:
             self.__add_person__ = "شماره تلفن الزامی است"
-            return 501
+            return 500
         if input_list[2] == "":
             input_list[2] = None
         
@@ -203,13 +206,13 @@ class back_person:
     def update_person(self, input_list):
         if input_list[0] == None:
             self.__update_person__ = "کد فرد الزامی است"
-            return 501
+            return 500
         if input_list[1] == "":
             self.__update_person__ = "نام فرد وارد نشده"
-            return 501
+            return 500
         if input_list[2] == None:
             self.__update_person__ = "شماره تلفن الزامی است"
-            return 501
+            return 500
         if input_list[3] == "":
             input_list[3] = None
         
@@ -264,16 +267,16 @@ class back_lend:
         input
         if input_list[0] == "":
             self.__add_lend__ = "نام شخص الزامی است"
-            return 501
+            return 500
         if input_list[1] == "":
             self.__add_lend__ = "نام کالا الزامی است"
-            return 501
+            return 500
         if input_list[2] == None:
             self.__add_lend__ = "تعداد الزامی است"
-            return 501
+            return 500
         if input_list[3] == "":
             self.__add_lend__ = "تاریخ امانت دادن الزامی است"
-            return 501
+            return 500
 
         if input_list[4] == "":
             input_list[4] = None
@@ -304,10 +307,10 @@ class back_lend:
                 obj.delet_row(Table_name="Warehouse_Stock", Column_name="WSID", ID=row[0])
             else:
                 self.__add_lend__ = "موجودی انبار کافی نیست"
-                return 501
+                return 500
         else:
             self.__add_lend__ = "در انبار کالا مورد نظر موجود نیست"
-            return 501
+            return 500
         
         obj.add_Lend(PersonID=input_list[0], ProductID=input_list[1], GiveLend=input_list[3], Numbers=input_list[2], GetLend=input_list[4], Description=input_list[5])
         self.__add_lend__ = "داده جدید ثبت شد"

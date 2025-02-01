@@ -40,9 +40,10 @@ def add_i_o():
     if submit:
         input_list = [i_oType, ProductName, Pric, Number, date]
         result = back.input_i_o(input_list=input_list)
-        if result == 502:
-            st.write("کالایی که قصد حذف آن را داشتید در انبار موجود نبود و عملیات شما صورت نگرفت")
-        st.rerun()
+        if result == 500:
+            st.write(back.__add_i_o__)
+        else:
+            st.rerun()
         submit = None
     
 def main():

@@ -26,7 +26,11 @@ def new_person():
 
     if submit:
         input_list = [name_lastname, phon_number, Information]
-        back.input_peron(input_list)
+        status = back.input_peron(input_list)
+        if status == 500:
+            st.error(back.__add_person__)
+        else:
+            st.rerun()
         submit = None
     st.divider()
 
@@ -49,7 +53,11 @@ def update_person():
 
     if submit:
         input_list = [personID, name_lastname, phon_number, Information]
-        back.update_person(input_list)
+        status = back.update_person(input_list)
+        if status == 500:
+            st.error(back.__update_person__)
+        else:
+            st.rerun()
         submit = None
 
 def search():

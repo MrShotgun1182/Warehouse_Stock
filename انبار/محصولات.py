@@ -28,7 +28,10 @@ def new_product():
     if submit:
         input_list = [product_name, description]
         result = back.input_product(input_list)
-        st.rerun()
+        if result == 500:
+            st.error(back.__add_product__)
+        else:
+            st.rerun()
         submit = None
     st.divider()
     
@@ -51,7 +54,11 @@ def update_product():
     if submit:
         input_list = [product_ID, product_name, description]
         result = back.update_product(input_list)
-        st.rerun()
+        if result == 500:
+            st.error(back.__update_product__)
+        else:
+            st.rerun()
+            st.write("بروزرسانی انجام شد")
         submit = None
     
     st.divider()
